@@ -30,9 +30,6 @@ public class AuthController {
     @PostMapping("/refresh-token")
     public ResponseEntity<?> refreshToken(@RequestBody TokenRefreshRequest request) {
         String requestRefreshToken = request.getRefreshToken();
-        TokenRefreshResponse response = new TokenRefreshResponse();
-        response.setRefreshToken(requestRefreshToken);
-
         return ResponseEntity.ok(refreshTokenService.doRefresh(requestRefreshToken));
     }
 
@@ -44,6 +41,5 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Seems like you are not logged in");
         }
     }
-
 
 }
